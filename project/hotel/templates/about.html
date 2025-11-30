@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | DreamStay</title>
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">🏨 DreamStay</div>
+    <nav>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'about' %}" class="active">About</a>
+      <a href="{% url 'booking' %}">Book Now</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+ <section class="hero">
+  <div class="hero-content">
+    <h1>About DreamStay</h1>
+    <p>Experience luxury and comfort like never before — DreamStay brings you the best hotel and hostel bookings across the globe.</p>
+    <a href="{% url 'booking' %}" class="btn">Book Your Stay</a>
+  </div>
+</section>
+
+
+  <!-- ABOUT US SECTION -->
+  <section class="about-us">
+    <div class="content">
+      <h2>Who We Are</h2>
+      <p>DreamStay is a premier hotel and hostel booking platform, serving travelers across the globe. 
+      Our mission is to make finding and booking your perfect stay simple, convenient, and affordable.</p>
+      
+      <h2>Why Choose Us?</h2>
+      <ul>
+        <li>Wide variety of accommodations – from luxury suites to budget-friendly dorms.</li>
+        <li>Real-time availability and instant booking confirmation.</li>
+        <li>Secure payment and hassle-free cancellations.</li>
+        <li>24/7 customer support to assist you at every step.</li>
+        <li>Exclusive deals and discounts for loyal customers.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <h2>Our Features</h2>
+    <div class="feature-list">
+      <div class="feature-card">
+        <img src="{% static 'images/icon1.png' %}" alt="Easy Booking">
+        <h3>Easy Booking</h3>
+        <p>Book your preferred room in just a few clicks with a smooth interface.</p>
+      </div>
+      <div class="feature-card">
+        <img src="{% static 'images/icon2.png' %}" alt="Trusted Stays">
+        <h3>Trusted Stays</h3>
+        <p>We partner only with verified hotels and hostels to ensure quality stays.</p>
+      </div>
+      <div class="feature-card">
+        <img src="{% static 'images/icon3.png' %}" alt="Affordable Prices">
+        <h3>Affordable Prices</h3>
+        <p>Competitive pricing and exclusive discounts to get the best deals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM SECTION -->
+  <section class="team">
+    <h2>Meet Our Team</h2>
+    <div class="team-list">
+      <div class="team-member">
+        <img src="{% static 'images/team1.jpg' %}" alt="Sanjay">
+        <h3>Sanjay Kumar</h3>
+        <p>Founder & CEO</p>
+      </div>
+      <div class="team-member">
+        <img src="{% static 'images/team2.jpg' %}" alt="Priya">
+        <h3>Priya Sharma</h3>
+        <p>Head of Operations</p>
+      </div>
+      <div class="team-member">
+        <img src="{% static 'images/team3.jpg' %}" alt="Rohan">
+        <h3>Rohan Verma</h3>
+        <p>Customer Support Lead</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial-list">
+      <div class="testimonial-card">
+        <p>"DreamStay made my travel planning effortless. The booking process was smooth, and the rooms exceeded my expectations!"</p>
+        <h4>- Ananya R.</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Amazing platform! I found a great deal for my family vacation and had excellent support throughout."</p>
+        <h4>- Rajesh K.</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Highly recommend DreamStay! Secure payments, easy cancellations, and prompt customer service."</p>
+        <h4>- Meera S.</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 DreamStay Hotel Booking | Designed by Sanjay</p>
+  </footer>
+</body>
+</html>

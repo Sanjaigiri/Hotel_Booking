@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DreamStay | Book Your Stay</title>
+  <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+      <div class="logo">🏨 <span>DreamStay</span></div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'booking' %}" class="active">Book Now</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+      <div class="menu-toggle">&#9776;</div>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+      <div class="hero-text">
+          <h1>Book Your Dream Stay</h1>
+          <p>Luxury, Comfort & Peace — Experience it all with DreamStay.</p>
+          <a href="#bookingForm" class="hero-btn">Start Booking</a>
+      </div>
+  </section>
+
+  <!-- ===== BOOKING FORM ===== -->
+  <section class="booking-container" id="bookingForm">
+      <div class="form-card">
+        <h2>Booking Details</h2>
+        <p>Complete the form to confirm your stay</p>
+
+        <form method="POST" id="bookForm">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[6-9][0-9]{9}" maxlength="10" required>
+            </div>
+        
+            <div class="form-group otp-group">
+            <label for="otp">OTP (One-Time Password)</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="text" id="otp" name="otp" placeholder="Enter OTP" pattern="[0-9]{6}" maxlength="6" required>
+                    <button type="button" id="sendOtpBtn">Send OTP</button>
+                </div>
+            <small>Enter the 6-digit OTP sent to your phone.</small>
+            <p id="otpMessage" style="margin-top: 5px; font-size: 13px;"></p>
+          </div>
+       
+
+        <div class="form-group">
+          <label for="roomType">Room Type</label>
+          <select id="roomType" name="roomType" required>
+            <option value="">-- Select Room Type --</option>
+            <option value="single">Single Room</option>
+            <option value="deluxe">Deluxe Room</option>
+            <option value="suite">Family Suite</option>
+            <option value="luxury">Luxury Room</option>
+            <option value="dorm">Dorm Room</option>
+            <option value="ocean">Ocean Suite</option>
+            <option value="executive">Executive Suite</option>
+            <option value="luxury_villa">Luxury Villa</option>
+          </select>
+        </div>
+
+        <div class="form-flex">
+          <div class="form-group half">
+            <label for="checkIn">Check-in Date</label>
+            <input type="date" id="checkIn" name="checkIn" required>
+          </div>
+          <div class="form-group half">
+            <label for="checkOut">Check-out Date</label>
+            <input type="date" id="checkOut" name="checkOut" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guests">Number of Guests</label>
+          <input type="number" id="guests" name="guests" min="1" max="10" required>
+        </div>
+
+        <p class="price">Total Price: <span id="totalPrice">₹0</span></p>
+        <p id="messageBox"></p>
+
+        <button type="submit" class="btn">Confirm Booking</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 DreamStay | Designed with ❤️ by Sanjay</p>
+  </footer>
+
+  {% if requires_login %}
+  <script>window.REQUIRES_LOGIN = true;</script>
+  {% else %}
+  <script>window.REQUIRES_LOGIN = false;</script>
+  {% endif %}
+
+  <script src="{% static 'js/booking.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DreamStay | Payment</title>
+  <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .payment-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .payment-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .payment-header h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    
+    .success-icon {
+      font-size: 80px;
+      color: #27ae60;
+      margin-bottom: 20px;
+    }
+    
+    .booking-summary {
+      background: #f8f9fa;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #dee2e6;
+    }
+    
+    .summary-row:last-child {
+      border-bottom: none;
+      font-weight: 600;
+      font-size: 18px;
+      color: #27ae60;
+    }
+    
+    .payment-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+      margin-top: 20px;
+    }
+    
+    .payment-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .verified-badge {
+      display: inline-block;
+      background: #27ae60;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+      <div class="logo">🏨 <span>DreamStay</span></div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'booking' %}">Book Now</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+      <div class="menu-toggle">&#9776;</div>
+  </header>
+
+  <!-- ===== PAYMENT SECTION ===== -->
+  <div class="payment-container">
+    <div class="payment-header">
+      <div class="success-icon">✓</div>
+      <h1>Phone Verification Successful!</h1>
+      <p>Your phone number has been verified</p>
+      {% if verified_phone %}
+      <span class="verified-badge">✓ {{ verified_phone }}</span>
+      {% endif %}
+    </div>
+
+    <div class="booking-summary">
+      <h2 style="margin-bottom: 20px; color: #2c3e50;">Booking Summary</h2>
+      <div class="summary-row">
+        <span>Name:</span>
+        <span id="summaryName">-</span>
+      </div>
+      <div class="summary-row">
+        <span>Email:</span>
+        <span id="summaryEmail">-</span>
+      </div>
+      <div class="summary-row">
+        <span>Phone:</span>
+        <span id="summaryPhone">-</span>
+      </div>
+      <div class="summary-row">
+        <span>Room Type:</span>
+        <span id="summaryRoomType">-</span>
+      </div>
+      <div class="summary-row">
+        <span>Check-in:</span>
+        <span id="summaryCheckIn">-</span>
+      </div>
+      <div class="summary-row">
+        <span>Check-out:</span>
+        <span id="summaryCheckOut">-</span>
+      </div>
+      <div class="summary-row">
+        <span>Guests:</span>
+        <span id="summaryGuests">-</span>
+      </div>
+      <div class="summary-row">
+        <span>Total Amount:</span>
+        <span id="summaryTotal">₹0</span>
+      </div>
+    </div>
+
+    <button class="payment-btn" onclick="proceedToPayment()">
+      Proceed to Payment Gateway
+    </button>
+    
+    <p style="text-align: center; margin-top: 20px; color: #7f8c8d;">
+      <a href="{% url 'booking' %}" style="color: #667eea; text-decoration: none;">← Back to Booking</a>
+    </p>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 DreamStay | Designed with ❤️ by Sanjay</p>
+  </footer>
+
+  <script>
+    // Load booking data from sessionStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const bookingData = sessionStorage.getItem('bookingData');
+      
+      if (bookingData) {
+        const data = JSON.parse(bookingData);
+        
+        document.getElementById('summaryName').textContent = data.name || '-';
+        document.getElementById('summaryEmail').textContent = data.email || '-';
+        document.getElementById('summaryPhone').textContent = data.phone || '-';
+        document.getElementById('summaryRoomType').textContent = formatRoomType(data.roomType) || '-';
+        document.getElementById('summaryCheckIn').textContent = formatDate(data.checkIn) || '-';
+        document.getElementById('summaryCheckOut').textContent = formatDate(data.checkOut) || '-';
+        document.getElementById('summaryGuests').textContent = data.guests || '-';
+        document.getElementById('summaryTotal').textContent = data.totalPrice || '₹0';
+      }
+    });
+
+    function formatRoomType(type) {
+      const types = {
+        'single': 'Single Room',
+        'deluxe': 'Deluxe Room',
+        'suite': 'Family Suite',
+        'luxury': 'Luxury Room',
+        'dorm': 'Dorm Room',
+        'ocean': 'Ocean Suite',
+        'executive': 'Executive Suite',
+        'luxury_villa': 'Luxury Villa'
+      };
+      return types[type] || type;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '-';
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('en-IN', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+    }
+
+    function proceedToPayment() {
+      alert('Payment gateway integration will be implemented here.\n\nThis is a demonstration of the OTP verification flow.');
+      // Here you would integrate with payment gateways like:
+      // - Razorpay
+      // - Stripe
+      // - PayPal
+      // etc.
+    }
+  </script>
+</body>
+</html>

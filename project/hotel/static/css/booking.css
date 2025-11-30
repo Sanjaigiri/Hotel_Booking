@@ -1,0 +1,341 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f0f8ff;
+  color: #333;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #1e90ff, #00c6ff);
+  padding: 15px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  transition: 0.3s;
+}
+
+.header:hover {
+  background: linear-gradient(90deg, #00c6ff, #1e90ff);
+}
+
+.logo {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  transition: 0.3s;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: #ffeb3b;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: #ffeb3b;
+  transition: width 0.3s;
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+              url("{% static 'images/hotel_hero.jpg' %}") center/cover no-repeat;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.hero-btn {
+  background: #ffeb3b;
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+
+/* ===== BOOKING FORM ===== */
+.booking-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.form-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 40px 50px;
+  max-width: 550px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.form-card h2 {
+  color: #1e90ff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-card p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 8px rgba(30,144,255,0.2);
+}
+
+.form-flex {
+  display: flex;
+  gap: 15px;
+}
+
+.half { flex: 1; }
+
+.price {
+  font-weight: 700;
+  color: #1e90ff;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1.1rem;
+}
+
+#messageBox {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 500;
+  color: #28a745;
+}
+
+/* ===== OTP STYLING ===== */
+.otp-group div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#otp {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+#otp:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 6px rgba(30,144,255,0.2);
+}
+
+/* ===== UPDATED OTP BUTTON ===== */
+#sendOtpBtn {
+  background: linear-gradient(45deg, #1e90ff, #00c6ff);
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+#sendOtpBtn:hover {
+  background: linear-gradient(45deg, #00c6ff, #1e90ff);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* ===== BUTTON ===== */
+.btn {
+  width: 100%;
+  background: #1e90ff;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #0c71c3;
+  transform: scale(1.03);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 25px 0;
+  margin-top: 40px;
+  font-size: 0.95rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    background: #1e90ff;
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 200px;
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+  }
+
+  .navbar ul.active { display: flex; }
+  .menu-toggle { display: block; }
+  .form-card { padding: 30px 25px; }
+
+  .otp-group div {
+    flex-direction: column; /* Stack OTP input & button */
+  }
+
+  #sendOtpBtn {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
+
+/* ===== OTP STYLING ===== */
+.otp-group div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#otp {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #1e90ff; /* Highlighted border */
+  border-radius: 8px;
+  outline: none;
+  background: #e6f2ff; /* Light blue background */
+  color: #000;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+#otp:focus {
+  border-color: #00c6ff;
+  box-shadow: 0 0 8px rgba(30,144,255,0.3);
+  background: #fff; /* Background brightens on focus */
+}
+
+/* ===== UPDATED OTP BUTTON ===== */
+#sendOtpBtn {
+  background: linear-gradient(45deg, #1e90ff, #00c6ff);
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+#sendOtpBtn:hover {
+  background: linear-gradient(45deg, #00c6ff, #1e90ff);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}

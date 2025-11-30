@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - Forgot Password</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 360px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        p.small {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .error {
+            background: #ffe1e1;
+            color: #d00;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            margin-top: 15px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005fcc;
+        }
+
+        .resend {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .resend a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Verify OTP</h2>
+
+        <p class="small">OTP sent to <strong>{{ email }}</strong>.</p>
+        <p class="small">Valid for <strong>1 minute</strong>.</p>
+
+        {% if error %}
+        <p class="error">❌ {{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <label>Enter OTP</label>
+            <input type="text" name="otp" maxlength="6" pattern="[0-9]{6}" required>
+
+            <button type="submit">Verify</button>
+        </form>
+
+        <div class="resend">
+            <a href="{% url 'forgot_password' %}">Resend OTP</a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Prevent typing letters
+document.querySelector("input[name='otp']").addEventListener("input", function() {
+    this.value = this.value.replace(/[^0-9]/g, "");
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Email — DreamStay</title>
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+
+<body>
+  <section class="signup-container">
+    <div class="verify-card">
+      <h2>Verify your email</h2>
+      <p class="small">OTP sent to <strong>{{ email }}</strong>. Valid for 1 minute.</p>
+
+      {% if error %}
+      <p class="error">❌ {{ error }}</p>
+      {% endif %}
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label>OTP</label>
+          <input type="text" name="otp" maxlength="6" pattern="[0-9]{6}" required>
+        </div>
+
+        <button class="btn">Verify</button>
+      </form>
+
+      <p class="small" style="margin-top:10px;">
+        Didn't get OTP? <a href="{% url 'signup' %}">Go back to signup</a>
+      </p>
+    </div>
+  </section>
+</body>
+</html>

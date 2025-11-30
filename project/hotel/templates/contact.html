@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | DreamStay</title>
+  <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">🏨 DreamStay</div>
+    <nav>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'booking' %}">Book Now</a>
+      <a href="{% url 'contact' %}" class="active">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="contact-hero">
+    <h2>Contact Us</h2>
+    <p>We’re here to help you! Reach out for bookings, support, or feedback.</p>
+  </section>
+
+  <!-- ===== CONTACT FORM SECTION ===== -->
+  <section class="contact-section">
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      <p>We’d love to hear from you! Fill out the form or reach us directly through the contact details below.</p>
+      <ul>
+        <li><strong>📍 Address:</strong> 123 DreamStay Street, Chennai, India</li>
+        <li><strong>📞 Phone:</strong> +91 98765 43210</li>
+        <li><strong>📧 Email:</strong> support@dreamstay.com</li>
+      </ul>
+
+      <!-- Social Media Links -->
+      <div class="social-media">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/?deoia=1" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/public-profile/settings" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+      <p id="responseMessage" class="hidden"></p>
+    </div>
+  </section>
+
+  <!-- ===== GOOGLE MAP SECTION ===== -->
+  <section class="map-section">
+    <h3>Our Location</h3>
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.1234567890!2d80.233!3d13.083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267e5abcde123%3A0xabcdef1234567890!2s123%20DreamStay%20Street%2C%20Chennai%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 DreamStay Hotel Booking | Designed by Sanjay</p>
+  </footer>
+
+  <script src="{% static 'js/contact.js' %}"></script>
+</body>
+</html>

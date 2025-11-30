@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DreamStay | Hotel & Hostel Booking</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">🏨 DreamStay</div>
+    <nav>
+      <a href="{% url 'index' %}" class="active">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'booking' %}">Book Now</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+
+    <!-- ===== LOGIN / SIGNUP BUTTONS ===== -->
+    <div class="auth-buttons">
+      <a href="{% url 'login' %}" class="btn login-btn">Login</a>
+      <a href="{% url 'signup' %}" class="btn signup-btn">Sign Up</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to DreamStay</h1>
+      <p>Your comfort is our priority. Book your hotel or hostel easily and quickly!</p>
+      <a href="{% url 'booking' %}" class="btn main-btn">Book Your Stay</a>
+    </div>
+  </section>
+
+  <!-- ===== ROOMS SECTION ===== -->
+  <section class="rooms">
+    <h2>Available Rooms</h2>
+    <div class="room-list">
+      <div class="room-card">
+        <img src="{% static 'images/room1.jpg' %}" alt="Deluxe Room">
+        <h3>Deluxe Room</h3>
+        <p>Comfortable room with modern amenities. ₹4500/night</p>
+      </div>
+      <div class="room-card">
+        <img src="{% static 'images/room2.jpg' %}" alt="Single Room">
+        <h3>Single Room</h3>
+        <p>Cozy room for solo travelers. ₹1200/night</p>
+      </div>
+      <div class="room-card">
+        <img src="{% static 'images/room3.jpg' %}" alt="Family Suite">
+        <h3>Family Suite</h3>
+        <p>Spacious suite for family stay. ₹6000/night</p>
+      </div>
+      <div class="room-card">
+        <img src="{% static 'images/room4.jpg' %}" alt="Luxury Suite">
+        <h3>Luxury Suite</h3>
+        <p>Premium comfort with balcony, bathtub & sea view. ₹8500/night</p>
+      </div>
+      <div class="room-card">
+        <img src="{% static 'images/room5.jpg' %}" alt="Dorm Room">
+        <h3>Dorm Room</h3>
+        <p>Budget-friendly shared accommodation for solo travelers. ₹1200/night</p>
+      </div>
+      <div class="room-card">
+        <img src="{% static 'images/room6.jpg' %}" alt="Ocean View Suite">
+        <h3>Ocean View Suite</h3>
+        <p>Enjoy stunning ocean views with world-class amenities. ₹9000/night</p>
+      </div>
+      <div class="room-card">
+        <img src="{% static 'images/room7.jpg' %}" alt="Executive Suite">
+        <h3>Executive Suite</h3>
+        <p>Luxurious suite for business professionals with workspace and lounge access. ₹6500/night</p>
+      </div>
+      <div class="room-card">
+        <img src="{% static 'images/room8.jpg' %}" alt="Luxury Villa">
+        <h3>Luxury Villa</h3>
+        <p>Private villa with swimming pool, garden, and personal butler service. ₹12,000/night</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 DreamStay Hotel Booking | Designed by Sanjay</p>
+  </footer>
+
+  <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
